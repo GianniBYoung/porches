@@ -1,0 +1,15 @@
+[Unit]
+Description=Kavita
+
+[Container]
+ContainerName=kavita
+Image=ghcr.io/kareadita/kavita:nightly
+Pull=always
+AutoUpdate=registry
+
+#Volume=/mnt/containers/calibre/main:/books:z
+Volume=kavita_config:/kavita/config
+NoNewPrivileges=true
+
+[Install]
+WantedBy=default.target
