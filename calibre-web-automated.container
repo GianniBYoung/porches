@@ -1,0 +1,23 @@
+[Unit]
+Description=Calibre Web Automated Container
+ConditionPathIsDirectory=%h/cwa
+ConditionPathIsDirectory=%h/cwa/library
+ConditionPathIsDirectory=%h/cwa/ingest
+
+[Container]
+ContainerName=calibre
+Image=docker.io/crocodilestick/calibre-web-automated:latest
+PublishPort=8083:8083
+Network=host
+
+Volume=calibre_config:/config
+Volume=%h/cwa/library:/calibre-library
+Volume=%h/cwa/ingest:/cwa-book-ingest
+
+Environment=PUID=0 PGID=0 TZ=America/Chicago
+
+[Service]
+Restart=always
+
+[Install]
+WantedBy=default.target
